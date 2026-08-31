@@ -16,34 +16,23 @@ A reusable agent skill adapted from [DreambigOu/ELI5](https://github.com/Dreambi
 
 ## Installation
 
-This repository is a self-contained skill folder. It can be used by Codex and by other general-purpose agents that support directory-based skills with a `SKILL.md` entrypoint.
+This repository is a self-contained skill folder. The easiest way to install it is to send one of the following instructions directly to your agent.
 
-### Codex
+### Codex Install Command
 
-macOS or Linux:
-
-```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-git clone https://github.com/xinxinxiaoxin/eli5-improved.git "${CODEX_HOME:-$HOME/.codex}/skills/eli5-improved"
+```text
+请从 GitHub 安装这个 skill：https://github.com/xinxinxiaoxin/eli5-improved
+将它安装到你的 skills 目录，刷新 skill 列表，并确认我可以通过 $eli5-improved 手动调用它。安装完成后告诉我安装路径和验证结果。
 ```
 
-Windows PowerShell:
+### General Agent Install Command
 
-```powershell
-$skillsDir = if ($env:CODEX_HOME) { Join-Path $env:CODEX_HOME "skills" } else { Join-Path $env:USERPROFILE ".codex\skills" }
-New-Item -ItemType Directory -Force -Path $skillsDir | Out-Null
-git clone https://github.com/xinxinxiaoxin/eli5-improved.git (Join-Path $skillsDir "eli5-improved")
+```text
+请安装 GitHub 仓库 https://github.com/xinxinxiaoxin/eli5-improved 中的 Agent skill。
+请根据你支持的 skill 安装机制把它注册到可用 skills 中，确认根目录包含 SKILL.md，并启用仅显式调用模式。安装完成后重新加载 skills，并确认可以通过 $eli5-improved 手动调用。
 ```
 
-### Other Compatible Agents
-
-Clone the repository into the skills directory recognized by your agent:
-
-```bash
-git clone https://github.com/xinxinxiaoxin/eli5-improved.git /path/to/your-agent/skills/eli5-improved
-```
-
-The final folder must contain `SKILL.md` at its root. Refresh or restart the agent after installation if it does not automatically rediscover skills.
+如果 Agent 支持直接从 GitHub 安装，它会自动选择合适的本地目录和安装方式；如果不支持，请让 Agent 说明所需的安装方式，而不要把仓库文件放到任意工作目录。
 
 ## Audience and Visual Style Guide
 

@@ -16,34 +16,23 @@
 
 ## 安装
 
-本仓库本身就是一个完整的 skill 文件夹。除了 Codex，任何支持目录式 skill 并以 `SKILL.md` 作为入口的通用 Agent 软件都可以使用。
+本仓库本身就是一个完整的 skill 文件夹。最简单的安装方式是直接把下面的命令发送给你的 Agent。
 
-### Codex
+### Codex 安装命令
 
-macOS 或 Linux：
-
-```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-git clone https://github.com/xinxinxiaoxin/eli5-improved.git "${CODEX_HOME:-$HOME/.codex}/skills/eli5-improved"
+```text
+请从 GitHub 安装这个 skill：https://github.com/xinxinxiaoxin/eli5-improved
+将它安装到你的 skills 目录，刷新 skill 列表，并确认我可以通过 $eli5-improved 手动调用它。安装完成后告诉我安装路径和验证结果。
 ```
 
-Windows PowerShell：
+### 通用 Agent 安装命令
 
-```powershell
-$skillsDir = if ($env:CODEX_HOME) { Join-Path $env:CODEX_HOME "skills" } else { Join-Path $env:USERPROFILE ".codex\skills" }
-New-Item -ItemType Directory -Force -Path $skillsDir | Out-Null
-git clone https://github.com/xinxinxiaoxin/eli5-improved.git (Join-Path $skillsDir "eli5-improved")
+```text
+请安装 GitHub 仓库 https://github.com/xinxinxiaoxin/eli5-improved 中的 Agent skill。
+请根据你支持的 skill 安装机制把它注册到可用 skills 中，确认根目录包含 SKILL.md，并启用仅显式调用模式。安装完成后重新加载 skills，并确认可以通过 $eli5-improved 手动调用。
 ```
 
-### 其他兼容 Agent
-
-将仓库克隆到对应 Agent 能够识别的 skills 目录：
-
-```bash
-git clone https://github.com/xinxinxiaoxin/eli5-improved.git /path/to/your-agent/skills/eli5-improved
-```
-
-安装后的目录根部必须包含 `SKILL.md`。如果 Agent 没有自动发现新 skill，请刷新或重新启动。
+如果 Agent 支持直接从 GitHub 安装，它会自动选择合适的本地目录和安装方式；如果不支持，请让 Agent 说明所需的安装方式，不要把仓库文件放到任意工作目录。
 
 ## 受众与视觉风格指南
 

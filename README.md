@@ -2,7 +2,7 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-A reusable agent skill adapted from [DreambigOu/ELI5](https://github.com/DreambigOu/ELI5). It turns complex topics, code, documents, and errors into audience-aware explanations, with Chinese visual HTML as the default output. It is manual-only: it is never invoked automatically.
+A reusable agent skill adapted from [DreambigOu/ELI5](https://github.com/DreambigOu/ELI5). It turns complex topics, code, documents, and errors into audience-aware explanations, with Chinese visual HTML as the default output. It is manual-only: it is never invoked automatically. When no audience is specified, it defaults to a 5-year-old style.
 
 ## What It Adds
 
@@ -12,6 +12,7 @@ A reusable agent skill adapted from [DreambigOu/ELI5](https://github.com/Dreambi
 - Switches to Markdown, plain text, Word, PDF, email, or another document format when the user explicitly requests it.
 - Preserves technical accuracy while adapting vocabulary, examples, information density, diagrams, and interaction patterns.
 - Runs only when explicitly called as `$eli5-improved`; it does not activate from ordinary explanation requests. Codex users get this behavior from `agents/openai.yaml`; other agents should enable their equivalent explicit-only setting.
+- Defaults to a 5-year-old audience when the invocation does not specify an audience.
 
 ## Installation
 
@@ -43,6 +44,20 @@ git clone https://github.com/xinxinxiaoxin/eli5-improved.git /path/to/your-agent
 ```
 
 The final folder must contain `SKILL.md` at its root. Refresh or restart the agent after installation if it does not automatically rediscover skills.
+
+## Audience and Visual Style Guide
+
+Read the public [Audience and Visual Style Guide](references/audience-styles.md) before writing a detailed invocation. It lists the available age, education, profession, and relationship profiles, including their vocabulary, analogy sources, information density, and visual direction.
+
+Choose one or more profiles in your request, for example:
+
+```text
+Use $eli5-improved for a 10-year-old.
+Use $eli5-improved for a college-level junior engineer.
+Use $eli5-improved for a 45-year-old engineering director.
+```
+
+If you omit these profiles, the skill uses the 5-year-old profile by default.
 
 ## Usage Examples
 

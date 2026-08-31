@@ -2,7 +2,7 @@
 
 [English](README.md) | **简体中文**
 
-这是基于 [DreambigOu/ELI5](https://github.com/DreambigOu/ELI5) 改编的通用 Agent skill。它能把复杂主题、代码、文档和错误信息转换成适合目标受众理解的解释，并默认生成中文 HTML 图文页面。它是手动调用型 skill，不会自动触发。
+这是基于 [DreambigOu/ELI5](https://github.com/DreambigOu/ELI5) 改编的通用 Agent skill。它能把复杂主题、代码、文档和错误信息转换成适合目标受众理解的解释，并默认生成中文 HTML 图文页面。它是手动调用型 skill，不会自动触发；如果没有指定受众，默认按 5 岁儿童风格生成。
 
 ## 主要增强
 
@@ -12,6 +12,7 @@
 - 用户明确要求 Markdown、纯文本、Word、PDF、邮件或其他文档格式时，切换为指定输出。
 - 在降低理解门槛的同时，保留技术准确性、关键边界和必要术语。
 - 只有显式调用 `$eli5-improved` 时才运行，不会因为普通的解释请求自动介入。Codex 通过 `agents/openai.yaml` 实现这一点；其他 Agent 请启用对应的“仅显式调用”设置。
+- 调用时未指定受众，默认使用 5 岁儿童受众风格。
 
 ## 安装
 
@@ -43,6 +44,20 @@ git clone https://github.com/xinxinxiaoxin/eli5-improved.git /path/to/your-agent
 ```
 
 安装后的目录根部必须包含 `SKILL.md`。如果 Agent 没有自动发现新 skill，请刷新或重新启动。
+
+## 受众与视觉风格指南
+
+开始编写具体调用语句前，请先阅读公开的[受众与视觉风格指南](references/audience-styles.md)。文件列出了年龄、教育程度、职业和关系等受众类型，以及对应的词汇、类比来源、信息密度和视觉方向。
+
+可以在调用中选择一个或多个受众条件：
+
+```text
+使用 $eli5-improved 给 10 岁孩子解释。
+使用 $eli5-improved 给大学水平的初级工程师解释。
+使用 $eli5-improved 给 45 岁的工程总监解释。
+```
+
+如果省略这些条件，skill 默认使用 5 岁儿童风格。
 
 ## 使用示例
 

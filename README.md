@@ -2,7 +2,7 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-A reusable agent skill adapted from [DreambigOu/ELI5](https://github.com/DreambigOu/ELI5). It turns complex topics, code, documents, and errors into audience-aware explanations, with Chinese visual HTML as the default output.
+A reusable agent skill adapted from [DreambigOu/ELI5](https://github.com/DreambigOu/ELI5). It turns complex topics, code, documents, and errors into audience-aware explanations, with Chinese visual HTML as the default output. It is manual-only: it is never invoked automatically.
 
 ## What It Adds
 
@@ -11,6 +11,7 @@ A reusable agent skill adapted from [DreambigOu/ELI5](https://github.com/Dreambi
 - Changes both writing style and visual design for different ages, education levels, professions, and relationships.
 - Switches to Markdown, plain text, Word, PDF, email, or another document format when the user explicitly requests it.
 - Preserves technical accuracy while adapting vocabulary, examples, information density, diagrams, and interaction patterns.
+- Runs only when explicitly called as `$eli5-improved`; it does not activate from ordinary explanation requests. Codex users get this behavior from `agents/openai.yaml`; other agents should enable their equivalent explicit-only setting.
 
 ## Installation
 
@@ -48,7 +49,7 @@ The final folder must contain `SKILL.md` at its root. Refresh or restart the age
 ### Explain a Concept to a Child
 
 ```text
-Use ELI5 to explain database indexes to a 10-year-old. Generate the default HTML visual explainer and use a school library analogy.
+Use $eli5-improved to explain database indexes to a 10-year-old. Generate the default HTML visual explainer and use a school library analogy.
 ```
 
 Expected behavior: a playful but not childish HTML page with a simple lookup flow, before-and-after comparison, and age-appropriate language.
@@ -56,7 +57,7 @@ Expected behavior: a playful but not childish HTML page with a simple lookup flo
 ### Produce a Document for a Product Manager
 
 ```text
-Explain API rate limiting to a product manager. Return a Markdown document covering user impact, peak-hour failure risk, implementation options, and the decision that needs to be made.
+Use $eli5-improved to explain API rate limiting to a product manager. Return a Markdown document covering user impact, peak-hour failure risk, implementation options, and the decision that needs to be made.
 ```
 
 Expected behavior: the skill uses a product-management perspective but follows the explicit Markdown request instead of generating HTML.
@@ -64,7 +65,7 @@ Expected behavior: the skill uses a product-management perspective but follows t
 ### Diagnose a Production Error for a Junior Engineer
 
 ```text
-Read the attached stack trace and the authentication middleware. Explain the root cause to a junior engineer at college level. Generate an HTML explainer containing the request timeline, the state transition that triggers the failure, a minimal reproduction, two fix options with trade-offs, and the relevant code identifiers unchanged.
+Use $eli5-improved to read the attached stack trace and authentication middleware. Explain the root cause to a junior engineer at college level. Generate an HTML explainer containing the request timeline, the state transition that triggers the failure, a minimal reproduction, two fix options with trade-offs, and the relevant code identifiers unchanged.
 ```
 
 Expected behavior: a technical learning page with accurate terminology, a request-flow diagram, progressive detail, and practical debugging guidance.
@@ -72,7 +73,7 @@ Expected behavior: a technical learning page with accurate terminology, a reques
 ### Explain an Architecture Decision to an Engineering Director
 
 ```text
-Read architecture.md and the deployment cost data. Explain the proposed migration from a monolith to an event-driven architecture to a 45-year-old engineering director. Generate a Chinese HTML briefing with the current and proposed architecture flows, a phased migration roadmap, a risk matrix, cost and timeline comparisons, and a final recommendation. Keep Kafka, idempotency, and eventual consistency as technical terms and define them on first use.
+Use $eli5-improved to read architecture.md and the deployment cost data. Explain the proposed migration from a monolith to an event-driven architecture to a 45-year-old engineering director. Generate a Chinese HTML briefing with the current and proposed architecture flows, a phased migration roadmap, a risk matrix, cost and timeline comparisons, and a final recommendation. Keep Kafka, idempotency, and eventual consistency as technical terms and define them on first use.
 ```
 
 Expected behavior: a restrained, decision-focused HTML briefing that combines the readability needs of the age group with the strategic priorities of the role.

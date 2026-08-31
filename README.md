@@ -1,47 +1,104 @@
-# ELI5 中文图文增强版
+# ELI5 Improved: Chinese Visual Explainer
 
-这是基于 [DreambigOu/ELI5](https://github.com/DreambigOu/ELI5) 改编的 Codex skill。
+**English** | [简体中文](README.zh-CN.md)
 
-它保留了原版按年龄、教育程度、职业和关系调整解释方式的能力，并增加：
+A reusable agent skill adapted from [DreambigOu/ELI5](https://github.com/DreambigOu/ELI5). It turns complex topics, code, documents, and errors into audience-aware explanations, with Chinese visual HTML as the default output.
 
-- 除必要技术术语外，默认使用简体中文。
-- 默认生成完整、响应式的 HTML 图文解释。
-- 不同年龄和职业使用不同的信息密度、类比方式与页面视觉风格。
-- 用户明确要求文档、Markdown、纯文本、Word 或 PDF 时，遵循指定格式。
+## What It Adds
 
-## 安装
+- Uses Simplified Chinese except where code, source text, proper nouns, or technical terms should remain unchanged.
+- Generates a complete, responsive HTML visual explainer by default.
+- Changes both writing style and visual design for different ages, education levels, professions, and relationships.
+- Switches to Markdown, plain text, Word, PDF, email, or another document format when the user explicitly requests it.
+- Preserves technical accuracy while adapting vocabulary, examples, information density, diagrams, and interaction patterns.
 
-将仓库克隆到 Codex skills 目录：
+## Installation
+
+This repository is a self-contained skill folder. It can be used by Codex and by other general-purpose agents that support directory-based skills with a `SKILL.md` entrypoint.
+
+### Codex
+
+macOS or Linux:
+
+```bash
+mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
+git clone https://github.com/xinxinxiaoxin/eli5-improved.git "${CODEX_HOME:-$HOME/.codex}/skills/eli5-improved"
+```
+
+Windows PowerShell:
 
 ```powershell
-git clone https://github.com/xinxinxiaoxin/eli5-improved.git "$env:USERPROFILE\.codex\skills\eli5-improved"
+$skillsDir = if ($env:CODEX_HOME) { Join-Path $env:CODEX_HOME "skills" } else { Join-Path $env:USERPROFILE ".codex\skills" }
+New-Item -ItemType Directory -Force -Path $skillsDir | Out-Null
+git clone https://github.com/xinxinxiaoxin/eli5-improved.git (Join-Path $skillsDir "eli5-improved")
 ```
 
-也可以下载仓库 ZIP，解压后确保目录结构为：
+### Other Compatible Agents
+
+Clone the repository into the skills directory recognized by your agent:
+
+```bash
+git clone https://github.com/xinxinxiaoxin/eli5-improved.git /path/to/your-agent/skills/eli5-improved
+```
+
+The final folder must contain `SKILL.md` at its root. Refresh or restart the agent after installation if it does not automatically rediscover skills.
+
+## Usage Examples
+
+### Explain a Concept to a Child
 
 ```text
-~/.codex/skills/eli5-improved/
+Use ELI5 to explain database indexes to a 10-year-old. Generate the default HTML visual explainer and use a school library analogy.
+```
+
+Expected behavior: a playful but not childish HTML page with a simple lookup flow, before-and-after comparison, and age-appropriate language.
+
+### Produce a Document for a Product Manager
+
+```text
+Explain API rate limiting to a product manager. Return a Markdown document covering user impact, peak-hour failure risk, implementation options, and the decision that needs to be made.
+```
+
+Expected behavior: the skill uses a product-management perspective but follows the explicit Markdown request instead of generating HTML.
+
+### Diagnose a Production Error for a Junior Engineer
+
+```text
+Read the attached stack trace and the authentication middleware. Explain the root cause to a junior engineer at college level. Generate an HTML explainer containing the request timeline, the state transition that triggers the failure, a minimal reproduction, two fix options with trade-offs, and the relevant code identifiers unchanged.
+```
+
+Expected behavior: a technical learning page with accurate terminology, a request-flow diagram, progressive detail, and practical debugging guidance.
+
+### Explain an Architecture Decision to an Engineering Director
+
+```text
+Read architecture.md and the deployment cost data. Explain the proposed migration from a monolith to an event-driven architecture to a 45-year-old engineering director. Generate a Chinese HTML briefing with the current and proposed architecture flows, a phased migration roadmap, a risk matrix, cost and timeline comparisons, and a final recommendation. Keep Kafka, idempotency, and eventual consistency as technical terms and define them on first use.
+```
+
+Expected behavior: a restrained, decision-focused HTML briefing that combines the readability needs of the age group with the strategic priorities of the role.
+
+## Output Modes
+
+| User request | Output |
+| --- | --- |
+| No format specified | Complete audience-specific HTML visual explainer |
+| HTML, webpage, visual explanation | Complete HTML visual explainer |
+| Document style without a file type | Structured Markdown |
+| Markdown or plain text | Requested text format |
+| Word, PDF, email, report, or memo | Requested document format |
+
+## Repository Structure
+
+```text
+eli5-improved/
 |-- SKILL.md
 |-- agents/
+|   `-- openai.yaml
 `-- references/
+    |-- audience-styles.md
+    `-- html-output-spec.md
 ```
 
-重新启动或刷新 Codex 后即可使用。
+## License and Attribution
 
-## 示例
-
-```text
-用 ELI5 给 10 岁孩子解释数据库索引。
-```
-
-默认生成适合 10 岁读者的 HTML 图文页。
-
-```text
-给一位产品经理解释 API 限流，用 Markdown 文档返回。
-```
-
-此时会使用产品经理视角，但按用户要求返回 Markdown，而不是 HTML。
-
-## 许可与归属
-
-本项目使用 MIT License。原始受众分类和解释框架来自 [DreambigOu/ELI5](https://github.com/DreambigOu/ELI5)，本仓库进行了中文化、输出形式和多受众视觉规范扩展。
+Released under the MIT License. The original audience classification and explanation framework come from [DreambigOu/ELI5](https://github.com/DreambigOu/ELI5). This repository adds Chinese localization, output-mode routing, and multi-audience visual design guidance.

@@ -1,0 +1,5 @@
+interface:
+  display_name: "ELI5 中文图文增强版"
+  short_description: "按年龄、职业和知识背景生成中文图文解释"
+  brand_color: "#0F766E"
+  default_prompt: "使用 $eli5-improved，把这个主题解释给我指定的受众，并默认生成匹配其风格的 HTML 图文页面。"
